@@ -1,4 +1,4 @@
-import { NovaPostApiProvider } from "../index";
+import { INovaPostApiProvider } from "../api-provider";
 
 export interface ApiRequestMethodParams<TMethodProperties>
   extends ApiRequestMethodDescriptor<TMethodProperties> {
@@ -14,9 +14,9 @@ export interface ApiRequestMethodDescriptor<TMethodProperties> {
 export abstract class NovaPostRequestMethod<TMethodProperties, TResponse> {
   protected abstract readonly modelName: string;
   protected abstract readonly calledMethod: string;
-  private readonly apiProvider: NovaPostApiProvider;
+  private readonly apiProvider: INovaPostApiProvider;
 
-  protected constructor(apiProvider: NovaPostApiProvider) {
+  protected constructor(apiProvider: INovaPostApiProvider) {
     this.apiProvider = apiProvider;
   }
 

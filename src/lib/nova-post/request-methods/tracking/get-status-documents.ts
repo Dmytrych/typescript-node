@@ -1,4 +1,5 @@
 import { MethodNames, ModelNames, NovaPostRequestMethod } from "../common";
+import { INovaPostApiProvider } from "../../api-provider";
 
 interface TrackingDocumentInfo {
   DocumentNumber: string;
@@ -9,15 +10,21 @@ interface GetStatusDocumentsProperties {
   Documents: TrackingDocumentInfo[];
 }
 
-interface TrackingDocumentInfo {
-  DocumentNumber: string;
-  Phone?: string;
+interface GetStatusDocumentsResponse {
+  Number: string;
+  DateCreated: string;
+  PhoneRecipient: string;
 }
 
 export class GetStatusDocuments extends NovaPostRequestMethod<
-  GetStatusDocumentsProperties
+  GetStatusDocumentsProperties,
+  GetStatusDocumentsResponse
 > {
   protected readonly calledMethod: string = MethodNames.getStatusDocuments;
 
   protected readonly modelName: string = ModelNames.trackingDocument;
+
+  public constructor(apiProvider: INovaPostApiProvider) {
+    super(apiProvider);
+  }
 }

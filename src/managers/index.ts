@@ -1,2 +1,1 @@
-export { UserManager } from './user-manager'
-export { TaskManager } from './task-manager'
+export { NovaPostManager } from "./nova-post-manager";
