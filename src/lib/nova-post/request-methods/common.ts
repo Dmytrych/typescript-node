@@ -23,25 +23,25 @@ export abstract class NovaPostRequestMethod<TMethodProperties, TResponse> {
   public async send(methodProperties: TMethodProperties) {
     const descriptor = this.getDescriptor(methodProperties);
     return await this.apiProvider.sendRequest<TMethodProperties, TResponse>(
-      descriptor
+      descriptor,
     );
   }
 
   private getDescriptor(
-    methodProperties: TMethodProperties
+    methodProperties: TMethodProperties,
   ): ApiRequestMethodDescriptor<TMethodProperties> {
     return {
       modelName: this.modelName,
       calledMethod: this.calledMethod,
-      methodProperties
+      methodProperties,
     };
   }
 }
 
 export const ModelNames = {
-  trackingDocument: "TrackingDocument"
+  trackingDocument: "TrackingDocument",
 };
 
 export const MethodNames = {
-  getStatusDocuments: "getStatusDocuments"
+  getStatusDocuments: "getStatusDocuments",
 };

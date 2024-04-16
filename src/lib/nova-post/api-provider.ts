@@ -2,12 +2,12 @@ import axios, { AxiosError } from "axios";
 import { Logger } from "pino";
 import {
   ApiRequestMethodDescriptor,
-  ApiRequestMethodParams
+  ApiRequestMethodParams,
 } from "./request-methods/common";
 
 export interface INovaPostApiProvider {
   sendRequest<TMethodProperties, TResponse>(
-    methodParams: ApiRequestMethodDescriptor<TMethodProperties>
+    methodParams: ApiRequestMethodDescriptor<TMethodProperties>,
   ): Promise<TResponse>;
 }
 
@@ -23,17 +23,21 @@ export class NovaPostApiProvider implements INovaPostApiProvider {
   }
 
   public async sendRequest<TMethodProperties, TResponse>(
-    methodParams: ApiRequestMethodDescriptor<TMethodProperties>
+    methodParams: ApiRequestMethodDescriptor<TMethodProperties>,
   ): Promise<TResponse> {
     return await axios
       .post<ApiRequestMethodParams<TMethodProperties>, TResponse>(this.apiUrl, {
         ...methodParams,
-        apiKey: this.apiKey
+        apiKey: this.apiKey,
+      })
+      .then((data) => {
+        console.log(data);
+        return data;
       })
       .catch((error: AxiosError) => {
         this.logger.error(
           `An error occurred in Nova Post API. Model: ${methodParams.modelName}, Method: ${methodParams.calledMethod}`,
-          error
+          error,
         );
         throw error;
       });

@@ -8,7 +8,7 @@ export { NovaPostController } from "./controller";
 export function init(server: Koa, container: ServiceContainer) {
   const router = new Router({ prefix: "/api/v1/novaPost" });
   const controller: NovaPostController = new NovaPostController(
-    container.managers.novaPost
+    container.managers.novaPost,
   );
 
   router.get("/tracking", controller.get.bind(controller));

@@ -14,9 +14,9 @@ export class NovaPostRepository {
     return await method.send({
       Documents: [
         {
-          DocumentNumber: documentNumber
-        }
-      ]
+          DocumentNumber: documentNumber,
+        },
+      ],
     });
   }
 }
