@@ -1,4 +1,5 @@
 import { INovaPostApiProvider } from "../api-provider";
+import { NovaPostResponse } from "../interfaces/NovaPostResponse";
 
 export interface ApiRequestMethodParams<TMethodProperties>
   extends ApiRequestMethodDescriptor<TMethodProperties> {
@@ -22,9 +23,10 @@ export abstract class NovaPostRequestMethod<TMethodProperties, TResponse> {
 
   public async send(methodProperties: TMethodProperties) {
     const descriptor = this.getDescriptor(methodProperties);
-    return await this.apiProvider.sendRequest<TMethodProperties, TResponse>(
-      descriptor,
-    );
+    return await this.apiProvider.sendRequest<
+      TMethodProperties,
+      NovaPostResponse<TResponse>
+    >(descriptor);
   }
 
   private getDescriptor(

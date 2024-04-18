@@ -7,7 +7,7 @@ export class NovaPostManager {
     this.repo = repo;
   }
 
-  public getStatusDocument(documentNumber: string) {
+  public getStatusDocuments(documentNumber: string) {
     return this.repo.trackDocuments(documentNumber);
   }
 }

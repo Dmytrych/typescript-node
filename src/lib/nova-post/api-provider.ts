@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Logger } from "pino";
 import {
   ApiRequestMethodDescriptor,
@@ -25,14 +25,16 @@ export class NovaPostApiProvider implements INovaPostApiProvider {
   public async sendRequest<TMethodProperties, TResponse>(
     methodParams: ApiRequestMethodDescriptor<TMethodProperties>,
   ): Promise<TResponse> {
-    return await axios
-      .post<ApiRequestMethodParams<TMethodProperties>, TResponse>(this.apiUrl, {
+    return axios
+      .post<
+        ApiRequestMethodParams<TMethodProperties>,
+        AxiosResponse<TResponse, ApiRequestMethodParams<TMethodProperties>>
+      >(this.apiUrl, {
         ...methodParams,
         apiKey: this.apiKey,
       })
-      .then((data) => {
-        console.log(data);
-        return data;
+      .then((response) => {
+        return response.data;
       })
       .catch((error: AxiosError) => {
         this.logger.error(

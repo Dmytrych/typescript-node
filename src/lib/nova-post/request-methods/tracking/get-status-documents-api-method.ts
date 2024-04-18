@@ -16,7 +16,7 @@ interface GetStatusDocumentsResponse {
   PhoneRecipient: string;
 }
 
-export class GetStatusDocuments extends NovaPostRequestMethod<
+export class GetStatusDocumentsApiMethod extends NovaPostRequestMethod<
   GetStatusDocumentsProperties,
   GetStatusDocumentsResponse
 > {

@@ -1,5 +1,5 @@
 import { INovaPostApiProvider } from "../lib/nova-post/api-provider";
-import { GetStatusDocuments } from "../lib/nova-post/request-methods";
+import { GetStatusDocumentsApiMethod } from "../lib/nova-post/request-methods";
 
 export class NovaPostRepository {
   private readonly apiProvider: INovaPostApiProvider;
@@ -9,7 +9,7 @@ export class NovaPostRepository {
   }
 
   public async trackDocuments(documentNumber: string) {
-    const method = new GetStatusDocuments(this.apiProvider);
+    const method = new GetStatusDocumentsApiMethod(this.apiProvider);
 
     return await method.send({
       Documents: [

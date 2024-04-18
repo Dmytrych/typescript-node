@@ -1,5 +1,5 @@
-import { Context } from "koa";
 import { NovaPostManager } from "../../managers";
+import { BaseContext } from "koa";
 
 export class NovaPostController {
   private manager: NovaPostManager;
@@ -8,10 +8,8 @@ export class NovaPostController {
     this.manager = manager;
   }
 
-  public async get(ctx: Context) {
-    const resp = await this.manager.getStatusDocument("asd");
-    console.log(resp);
-
+  public async getStatusDocuments(ctx: BaseContext) {
+    await this.manager.getStatusDocuments(ctx.status);
     ctx.status = 200;
   }
 }

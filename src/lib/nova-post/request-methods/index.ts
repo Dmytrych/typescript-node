@@ -1,1 +1,1 @@
-export { GetStatusDocuments } from "./tracking/get-status-documents";
+export { GetStatusDocumentsApiMethod } from "./tracking/get-status-documents-api-method";

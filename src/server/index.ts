@@ -30,7 +30,7 @@ export class AppServer {
     }
 
     const checkPendingRequests = (
-      callback: ErrorCallback<Error | undefined>
+      callback: ErrorCallback<Error | undefined>,
     ) => {
       this.server.getConnections(
         (err: Error | null, pendingRequests: number) => {
@@ -41,7 +41,7 @@ export class AppServer {
           } else {
             callback(undefined);
           }
-        }
+        },
       );
     };
 
@@ -55,7 +55,7 @@ export class AppServer {
           } else {
             this.server.close(() => resolve());
           }
-        }).bind(this)
+        }).bind(this),
       );
     });
   }
